@@ -1,0 +1,26 @@
+﻿syntax="proto3";
+
+option csharp_namespace = "GrpcClient";
+
+package person;
+
+import "google/protobuf/timestamp.proto";//日期和时间类型
+import "google/protobuf/duration.proto";  
+
+import "google/protobuf/wrappers.proto";//可空类型
+
+service People{
+	rpc SayHi(HiRequest) returns (HiReply);
+}
+
+message HiRequest{
+	string name = 1;
+}
+
+message HiReply{
+	string Message = 1;
+	google.protobuf.Timestamp ReplyTime = 2;//日期和时间类型
+	google.protobuf.Int32Value WordCount = 3;//可空类型
+	repeated string Rules = 4 ;//集合类型
+	map<string,string> DataDict = 5; //字典类型
+}
